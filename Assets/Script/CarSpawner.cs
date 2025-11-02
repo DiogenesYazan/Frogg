@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class CarSpawner : MonoBehaviour
 {
     [Header("Configurações do Carro")]
@@ -20,6 +21,9 @@ public class CarSpawner : MonoBehaviour
     
     [Tooltip("Tempo máximo entre spawns (segundos)")]
     public float maxSpawnInterval = 5f;
+    
+    [Tooltip("Tempo até o carro ser destruído automaticamente (segundos)")]
+    public float carLifetime = 20f;
     
     [Header("Movimento")]
     [Tooltip("Velocidade do carro")]
@@ -104,11 +108,14 @@ public class CarSpawner : MonoBehaviour
         mover.direction = direction;
         mover.spawner = this;
         
+        // Destrói o carro automaticamente após o tempo especificado
+        Destroy(newCar, carLifetime);
+        
         // Guarda referência do último carro
         lastSpawnedCar = newCar.transform;
         
         if (showDebugInfo)
-            Debug.Log($"Carro spawnado em {spawnPoint.position}");
+            Debug.Log($"Carro spawnado em {spawnPoint.position} - Será destruído em {carLifetime} segundos");
     }
     
     // Chamado quando um carro atinge o collider final

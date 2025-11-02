@@ -1,5 +1,5 @@
 using UnityEngine;
-using Cinemachine;
+using System.Reflection;
 
 namespace PV.Multiplayer
 {
@@ -10,9 +10,10 @@ namespace PV.Multiplayer
         // Reference to the InputManager to handle player input.
         public InputManager input;
 
-        // Cinemachine virtual cameras for normal following and aiming modes.
-        public CinemachineVirtualCameraBase followCamera;
-        public CinemachineVirtualCameraBase aimCamera;
+        // Virtual camera references (kept as Component so code compiles without Cinemachine package).
+        // If Cinemachine is installed, assign the Cinemachine vcam components in the inspector.
+        public Component followCamera;
+        public Component aimCamera;
 
         public float angleUpDown = 20; // Vertical angle for non-aiming mode.
         public float lookMultiplier = 1; // Look multiplier for horizontal sensitivity.
@@ -31,7 +32,6 @@ namespace PV.Multiplayer
                 input = InputManager.Instance;
             }
         }
-
         public void Init(PlayerController playerController)
         {
             if (followCamera == null || aimCamera == null)
@@ -40,17 +40,25 @@ namespace PV.Multiplayer
                 return;
             }
 
-            // Assign the player's follow target to the follow camera.
+            // Assign the player's follow target to the follow camera (use reflection to work without Cinemachine).
             if (followCamera != null)
             {
-                followCamera.Follow = playerController.followTarget;
+                var prop = followCamera.GetType().GetProperty("Follow", BindingFlags.Public | BindingFlags.Instance);
+                if (prop != null && prop.CanWrite && prop.PropertyType == typeof(Transform))
+                {
+                    prop.SetValue(followCamera, playerController.followTarget);
+                }
                 _followTarget = playerController.followTarget;
             }
 
-            // Configure the aim camera with the follow target and aim reticle.
+            // Configure the aim camera with the follow target.
             if (aimCamera != null)
             {
-                aimCamera.Follow = playerController.followTarget;
+                var prop = aimCamera.GetType().GetProperty("Follow", BindingFlags.Public | BindingFlags.Instance);
+                if (prop != null && prop.CanWrite && prop.PropertyType == typeof(Transform))
+                {
+                    prop.SetValue(aimCamera, playerController.followTarget);
+                }
             }
         }
 

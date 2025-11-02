@@ -75,6 +75,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6669384687754120583}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cd0ca0df58dd9734ab83aecda70176e3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7699107832402892673}
   m_SourcePrefab: {fileID: 100100000, guid: cd0ca0df58dd9734ab83aecda70176e3, type: 3}
 --- !u!1 &6278622480676325352 stripped
 GameObject:
@@ -130,3 +134,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.1, y: 1.59, z: 4.665}
   m_Center: {x: -0.007443309, y: 0.7949967, z: 0.05769205}
+--- !u!114 &-7699107832402892673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6278622480676325352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58caf335e6cfbb440b1f844f7b40bebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarDamage
+  damageAmount: 200
+  playerTag: Player
+  damageCooldown: 0.5
+  showDebugInfo: 0
