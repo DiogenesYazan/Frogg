@@ -557,7 +557,7 @@ namespace PV.Multiplayer
         {
             // Close the room so no more players can join and load the game scene.
             PhotonNetwork.CurrentRoom.IsOpen = false;
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel(2);
         }
 
         /// <summary>
@@ -581,7 +581,7 @@ namespace PV.Multiplayer
         }
 
         /// <summary>
-        /// Handles updates to the player’s ready status when their properties change.
+        /// Handles updates to the playerï¿½s ready status when their properties change.
         /// </summary>
         public void OnPlayerPropsUpdate(int actorNumber, Hashtable props)
         {
@@ -649,7 +649,7 @@ namespace PV.Multiplayer
         }
 
         /// <summary>
-        /// Removes the player’s UI item from the players list of current room.
+        /// Removes the playerï¿½s UI item from the players list of current room.
         /// </summary>
         private void RemovePlayerItem(int actorNumber)
         {
