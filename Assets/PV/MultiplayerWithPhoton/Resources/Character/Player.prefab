@@ -191,6 +191,7 @@ MonoBehaviour:
   playerUI: {fileID: 5955608517526727750}
   followTarget: {fileID: 2751430860032435540}
   health: 100
+  showDebugInfo: 0
 --- !u!114 &8249035633312587225
 MonoBehaviour:
   m_ObjectHideFlags: 0

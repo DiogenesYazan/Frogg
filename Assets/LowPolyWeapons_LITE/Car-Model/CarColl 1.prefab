@@ -149,4 +149,4 @@ MonoBehaviour:
   damageAmount: 200
   playerTag: Player
   damageCooldown: 0.5
-  showDebugInfo: 0
+  showDebugInfo: 1
